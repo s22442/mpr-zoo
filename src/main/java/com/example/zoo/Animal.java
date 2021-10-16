@@ -81,4 +81,25 @@ public class Animal {
     this.isHungry = isHungry;
     this.health = health;
   }
+
+  public String toString() {
+    return "Animal{"
+        + "id="
+        + id
+        + ", name='"
+        + name
+        + '\''
+        + ", specimen='"
+        + specimen
+        + '\''
+        + ", diet="
+        + diet
+        + ", type="
+        + type
+        + ", isHungry="
+        + isHungry
+        + ", health="
+        + health
+        + '}';
+  }
 }

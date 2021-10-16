@@ -56,4 +56,21 @@ public class Zoo {
     this.isClosed = isClosed;
     this.animals = animals;
   }
+
+  public String toString() {
+    return "Zoo{"
+        + "id="
+        + id
+        + ", name='"
+        + name
+        + '\''
+        + ", location='"
+        + location
+        + '\''
+        + ", isClosed="
+        + isClosed
+        + ", animals="
+        + animals
+        + '}';
+  }
 }
