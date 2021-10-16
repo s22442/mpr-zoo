@@ -1,11 +1,12 @@
-package com.example.demo;
+package com.example.zoo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class ZooApplication {
   public static void main(String[] args) {
-    SpringApplication.run(DemoApplication.class, args);
+    SpringApplication.run(ZooApplication.class, args);
+    System.out.println("Started Zoo Application");
   }
 }
