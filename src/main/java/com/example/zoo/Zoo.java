@@ -1,13 +1,19 @@
 package com.example.zoo;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Zoo {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
+
   private String name;
   private String location;
   private boolean isClosed;
-  private List<Animal> animals;
+
+  @OneToMany private List<Animal> animals;
 
   public Integer getId() {
     return id;
@@ -48,6 +54,8 @@ public class Zoo {
   public void setAnimals(List<Animal> animals) {
     this.animals = animals;
   }
+
+  public Zoo() {}
 
   public Zoo(Integer id, String name, String location, boolean isClosed, List<Animal> animals) {
     this.id = id;

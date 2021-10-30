@@ -1,7 +1,16 @@
 package com.example.zoo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Animal {
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
   private Integer id;
+
   private String name;
   private String specimen;
   private AnimalDiet diet;
@@ -64,6 +73,8 @@ public class Animal {
   public void setHealth(AnimalHealth health) {
     this.health = health;
   }
+
+  public Animal() {}
 
   public Animal(
       Integer id,
