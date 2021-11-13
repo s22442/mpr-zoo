@@ -6,14 +6,15 @@ import java.util.List;
 @Entity
 public class Zoo {
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Integer id;
 
   private String name;
   private String location;
   private boolean isClosed;
 
-  @OneToMany private List<Animal> animals;
+  @OneToMany(cascade = CascadeType.ALL)
+  private List<Animal> animals;
 
   public Integer getId() {
     return id;
