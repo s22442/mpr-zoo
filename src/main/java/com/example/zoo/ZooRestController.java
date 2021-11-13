@@ -43,12 +43,7 @@ public class ZooRestController {
   @GetMapping("/{id}")
   public ResponseEntity<Optional<Zoo>> getById(@PathVariable("id") Integer id) {
     Optional<Zoo> zoo = zooService.getById(id);
-
-    if (zoo.isEmpty()) {
-      return ResponseEntity.notFound().build();
-    }
-
-    return ResponseEntity.ok(zoo);
+    return zoo.isPresent() ? ResponseEntity.ok(zoo) : ResponseEntity.notFound().build();
   }
 
   @GetMapping("/great-id")
