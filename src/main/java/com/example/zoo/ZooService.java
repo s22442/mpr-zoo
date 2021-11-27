@@ -39,12 +39,11 @@ public class ZooService {
   }
 
   public Zoo getEmptyZoo() {
-    return new Zoo(
-        1,
-        "Wesołe Zoo",
-        "Zoo, sala 107, Polsko-Japońska Akademia Technik Komputerowych, Gdańsk Brzegi 55",
-        false,
-        null);
+    return new Zoo(null, null, null, false, null);
+  }
+
+  public Zoo getEmptyZooWithName(String name) {
+    return new Zoo(null, name, null, false, null);
   }
 
   public Zoo getZooOfName(String name) {
@@ -67,4 +66,47 @@ public class ZooService {
   public List<Zoo> getAllWithGreatId() {
     return this.zooRepository.findAllByIdGreaterThan(5);
   }
+
+  public void addAnimalToZoo(Zoo zoo, Animal animal) {
+    if (animal.getName() != null) {
+      zoo.addAnimal(animal);
+    }
+  }
+
+  public void removeAnimalFromZooByIndex(Zoo zoo, int index) {
+    if (index < zoo.getAnimals().size()) {
+      zoo.removeAnimalByIndex(index);
+    }
+  }
+
+  public Animal getAnimalFromZooByName(Zoo zoo, String name) {
+
+    return name != null ? zoo.getAnimalByName(name) : null;
+  }
+
+  public void changeZooName(Zoo zoo, String newName) {
+    if (newName != null) {
+      zoo.setName(newName);
+    }
+  }
+
+  public void changeZooLocation(Zoo zoo, String newLocation) {
+    if (newLocation != null) {
+      zoo.setLocation(newLocation);
+    }
+  }
+
+  public void appendZooName(Zoo zoo, String prefix) {
+    if (prefix != null) {
+      zoo.setName(zoo.getName() + prefix);
+    }
+  }
+
+  public void closeZoo(Zoo zoo) {
+    if (!zoo.isClosed()) {
+      zoo.setClosed(true);
+    }
+  }
+
+
 }

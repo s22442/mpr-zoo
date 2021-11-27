@@ -2,6 +2,7 @@ package com.example.zoo;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Zoo {
@@ -54,6 +55,25 @@ public class Zoo {
 
   public void setAnimals(List<Animal> animals) {
     this.animals = animals;
+  }
+
+  public void addAnimal(Animal animal) {
+    this.animals.add(animal);
+  }
+
+  public void removeAnimalByIndex(int index) {
+    this.animals.remove(index);
+  }
+
+  public Animal getAnimalByName(String name) {
+
+    for (Animal animal : this.animals) {
+      if (Objects.equals(animal.getName(), name)) {
+        return animal;
+      }
+    }
+
+    return null;
   }
 
   public Zoo() {}
