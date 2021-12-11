@@ -1,15 +1,27 @@
 package com.example.zoo;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
 
+@ExtendWith(MockitoExtension.class)
 class ZooServiceTest {
 
-  private final ZooService zooService = new ZooService(null);
+  @Mock private ZooRepository zooRepository;
+
+  @InjectMocks private ZooService zooService;
 
   @Test
   void shouldAddAnimalToZoo() {
@@ -160,5 +172,65 @@ class ZooServiceTest {
     zooService.closeZoo(zoo);
 
     assertThat(zoo.isClosed()).isTrue();
+  }
+
+  @Test
+  void shouldFindById() {
+    when(zooRepository.findById(any())).thenReturn(Optional.of(new Zoo()));
+
+    Zoo zooById = zooService.findById(1);
+
+    assertThat(zooById).isNotNull();
+  }
+
+  @Test
+  void shouldNotFindById() {
+    when(zooRepository.findById(any())).thenReturn(Optional.empty());
+
+    Zoo zooById = zooService.findById(1);
+
+    assertThat(zooById).isNull();
+  }
+
+  @Test
+  void shouldExistById() {
+    when(zooRepository.existsById(any())).thenReturn(true);
+
+    boolean zooExists = zooService.existsById(1);
+
+    assertThat(zooExists).isTrue();
+  }
+
+  @Test
+  void shouldNotExistById() {
+    when(zooRepository.existsById(any())).thenReturn(false);
+
+    boolean zooExists = zooService.existsById(1);
+
+    assertThat(zooExists).isFalse();
+  }
+
+  @Test
+  void shouldGetAll() {
+    List<Zoo> zoos = new ArrayList<>();
+    zoos.add(new Zoo());
+    when(zooRepository.findAll()).thenReturn(zoos);
+
+    List<Zoo> allZoos = zooService.getAll();
+
+    assertThat(allZoos).hasSize(zoos.size());
+  }
+
+  @Test
+  void shouldNotGetAll() {
+    List<Zoo> allZoos = zooService.getAll();
+
+    assertThat(allZoos).isEmpty();
+  }
+
+  @Test
+  void shouldDeleteById() {
+    zooService.deleteById(1);
+    verify(zooRepository, times(2)).deleteById(any());
   }
 }

@@ -3,6 +3,7 @@ package com.example.zoo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -80,7 +81,6 @@ public class ZooService {
   }
 
   public Animal getAnimalFromZooByName(Zoo zoo, String name) {
-
     return name != null ? zoo.getAnimalByName(name) : null;
   }
 
@@ -108,5 +108,17 @@ public class ZooService {
     }
   }
 
+  public boolean existsById(Integer id) {
+    return zooRepository.existsById(id);
+  }
 
+  public void deleteById(Integer id) {
+    zooRepository.deleteById(id);
+  }
+
+  public Zoo findById(Integer id) {
+    Optional<Zoo> zooById = zooRepository.findById(id);
+
+    return zooById.orElse(null);
+  }
 }
