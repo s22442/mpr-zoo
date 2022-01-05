@@ -18,6 +18,25 @@ public class Animal {
   private boolean isHungry;
   private AnimalHealth health;
 
+  public Animal() {}
+
+  public Animal(
+      Integer id,
+      String name,
+      String specimen,
+      AnimalDiet diet,
+      AnimalType type,
+      boolean isHungry,
+      AnimalHealth health) {
+    this.id = id;
+    this.name = name;
+    this.specimen = specimen;
+    this.diet = diet;
+    this.type = type;
+    this.isHungry = isHungry;
+    this.health = health;
+  }
+
   public Integer getId() {
     return id;
   }
@@ -71,25 +90,6 @@ public class Animal {
   }
 
   public void setHealth(AnimalHealth health) {
-    this.health = health;
-  }
-
-  public Animal() {}
-
-  public Animal(
-      Integer id,
-      String name,
-      String specimen,
-      AnimalDiet diet,
-      AnimalType type,
-      boolean isHungry,
-      AnimalHealth health) {
-    this.id = id;
-    this.name = name;
-    this.specimen = specimen;
-    this.diet = diet;
-    this.type = type;
-    this.isHungry = isHungry;
     this.health = health;
   }
 

@@ -17,6 +17,16 @@ public class Zoo {
   @OneToMany(cascade = CascadeType.ALL)
   private List<Animal> animals;
 
+  public Zoo() {}
+
+  public Zoo(Integer id, String name, String location, boolean isClosed, List<Animal> animals) {
+    this.id = id;
+    this.name = name;
+    this.location = location;
+    this.isClosed = isClosed;
+    this.animals = animals;
+  }
+
   public Integer getId() {
     return id;
   }
@@ -74,16 +84,6 @@ public class Zoo {
     }
 
     return null;
-  }
-
-  public Zoo() {}
-
-  public Zoo(Integer id, String name, String location, boolean isClosed, List<Animal> animals) {
-    this.id = id;
-    this.name = name;
-    this.location = location;
-    this.isClosed = isClosed;
-    this.animals = animals;
   }
 
   public String toString() {
